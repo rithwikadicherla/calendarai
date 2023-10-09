@@ -32,6 +32,22 @@ function App() {
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
 
+  const responseGoogle = (response) => {
+    // Handle the response object, which contains the user's Google information.
+    console.log(response);
+    const accessToken = response.accessToken;
+    const googleId = response.googleId;
+    const profileObj = response.profileObj;
+    const tokenId = response.tokenId;
+    const name = response.profileObj.name;
+    const imageUrl = response.profileObj.imageUrl;
+    console.log(accessToken);
+    console.log(googleId);
+    console.log(profileObj);
+    console.log(tokenId);
+    console.log(name);
+    console.log(imageUrl);
+  };
   // Function to handle the "Send Calendar Invite" button click
   const handleSendInvite = () => {
     // You can implement the calendar invite logic here
@@ -42,10 +58,7 @@ function App() {
     console.log(`Start Time: ${startTime}`);
     console.log(`End Time: ${endTime}`);
   };
-  const responseGoogle = (response) => {
-    // Handle the response object, which contains the user's Google information.
-    console.log(response);
-  }
+
   return (
     <div className="App">
       <h1>Create Calendar Event</h1>
@@ -58,15 +71,15 @@ function App() {
           onChange={(e) => setEventName(e.target.value)}
         />
       </div>
-      {/* <div className="App">
+      <div>
       <GoogleLogin
-        clientId="YOUR_CLIENT_ID"
+        clientId="56473341549-hhvu8bpfou3bal9lim6su9090bapk6fd.apps.googleusercontent.com"
         buttonText="Login with Google"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
         cookiePolicy={'single_host_origin'}
       />
-      </div> */}
+      </div>
       <div>
         <label htmlFor="eventDescription">Event Description:</label>
         <textarea

@@ -35,19 +35,25 @@ function App() {
   const responseGoogle = (response) => {
     // Handle the response object, which contains the user's Google information.
     console.log(response);
-    const accessToken = response.accessToken;
-    const googleId = response.googleId;
-    const profileObj = response.profileObj;
-    const tokenId = response.tokenId;
-    const name = response.profileObj.name;
-    const imageUrl = response.profileObj.imageUrl;
-    console.log(accessToken);
-    console.log(googleId);
-    console.log(profileObj);
-    console.log(tokenId);
-    console.log(name);
-    console.log(imageUrl);
+
+    // const accessToken = response.accessToken;
+    // const googleId = response.googleId;
+    // const profileObj = response.profileObj;
+    // const tokenId = response.tokenId;
+    // const name = response.profileObj.name;
+    // const imageUrl = response.profileObj.imageUrl;
+    // console.log(accessToken);
+    // console.log(googleId);
+    // console.log(profileObj);
+    // console.log(tokenId);
+    // console.log(name);
+    // console.log(imageUrl);
   };
+
+  const responseError = (error) => {
+    console.log(error);
+  };
+  
   // Function to handle the "Send Calendar Invite" button click
   const handleSendInvite = () => {
     // You can implement the calendar invite logic here
@@ -73,11 +79,14 @@ function App() {
       </div>
       <div>
       <GoogleLogin
-        clientId="56473341549-hhvu8bpfou3bal9lim6su9090bapk6fd.apps.googleusercontent.com"
-        buttonText="Login with Google"
+        clientId='56473341549-hhvu8bpfou3bal9lim6su9090bapk6fd.apps.googleusercontent.com'
+        buttonText='Login with Google'
         onSuccess={responseGoogle}
-        onFailure={responseGoogle}
+        onFailure={responseError}
         cookiePolicy={'single_host_origin'}
+        responseType='code'
+        accessType='offline'
+        scope='openid email profile https://www.googleapis.com/auth/calendar'
       />
       </div>
       <div>
